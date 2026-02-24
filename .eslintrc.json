@@ -1,0 +1,24 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+
+    "no-console": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "prefer-const": "error",
+    "semi": ["error", "always"]
+  }
+}
+//     parser: Говорит линтеру: «Чувак, мы пишем на TypeScript, используй специальный движок, чтобы понимать наш код».
+
+//     extends: Подключает стандартные «хорошие манеры» программиста.
+
+//     rules (Самое важное):
+
+//         "@typescript-eslint/no-explicit-any": "error" — Это та самая проверка на any. Если кто-то из твоих пацанов напишет any, линтер выдаст красную ошибку и не даст сделать билд.
+
+//         "no-unused-vars": "error" — Если создал переменную и не юзаешь её — это мусор, линтер заставит её удалить.
+
+//         "semi": "always" — Всегда ставить точку с запятой (чтобы код был в одном стиле)

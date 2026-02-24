@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Базовые настройки */
+    "target": "ES2020" /* Версия JS, в которую компилируем */,
+    "module": "CommonJS" /* Стандарт модулей для Node.js */,
+    "lib": ["ES2020", "DOM"] /* Библиотеки типов (DOM нужен для фронта) */,
+    "rootDir": "./src" /* Где лежит твой исходный код */,
+    "outDir": "./dist" /* Куда попадет готовый JS после сборки */,
+
+    /* Строгие проверки (Чтобы не было "any") */
+    "strict": true /* Включает все строгие проверки разом */,
+    "noImplicitAny": true /* Явно запрещает неявный any */,
+    "strictNullChecks": true /* Заставляет проверять на null/undefined */,
+
+    /* Модули и совместимость */
+    "moduleResolution": "node" /* Как TS ищет модули */,
+    "esModuleInterop": true /* Позволяет импорты import express from 'express' */,
+    "skipLibCheck": true /* Пропускать проверку типов в node_modules (ускоряет билд) */,
+    "forceConsistentCasingInFileNames": true /* Чувствительность к регистру в названиях файлов */,
+
+    /* Дополнительно */
+    "resolveJsonModule": true /* Позволяет импортировать .json файлы (нужно для ваших БД) */,
+    "sourceMap": true /* Нужен для дебага кода через TS файлы */
+  },
+  "include": ["src/**/*"] /* Что компилировать */,
+  "exclude": ["node_modules", "**/*.test.ts"] /* Что игнорировать */
+}
