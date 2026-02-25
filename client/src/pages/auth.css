@@ -1,0 +1,180 @@
+.auth-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.auth-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 0;
+}
+
+/* большая*/
+
+.auth-card {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    border-radius: 18px;
+    overflow: hidden;
+
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+
+    box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+    z-index: 1;
+
+    transform: scale(0.7);
+}
+
+/* левая часть */
+
+.auth-left {
+    padding: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.auth-left h1 {
+    font-size: 44px;
+    margin-bottom: 18px;
+}
+
+.auth-left .lead {
+    font-size: 20px;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+/* квадратикти */
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.feature-box {
+    background: rgba(255,255,255,0.12);
+    padding: 20px;
+    border-radius: 14px;
+    transition: 0.3s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.feature-box:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+}
+
+.feature-box h4 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.feature-box p {
+    font-size: 17px;
+    opacity: 0.9;
+}
+
+/* правая часть */
+
+.auth-right {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.97);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-right h2 {
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: #6B3E1E;
+    text-align: center;
+}
+
+.auth-right .subtitle {
+    margin-bottom: 30px;
+    color: #555;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* форма */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.form-group input {
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+
+.form-hint {
+    font-size: 15px;
+    margin-top: 6px;
+    color: #777;
+}
+
+.auth-form button {
+    padding: 16px;
+    border-radius: 10px;
+    border: none;
+    background: #6B3E1E;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 12px;
+}
+
+.auth-form button:hover {
+    background: #8B4513;
+}
+
+/* анимки */
+
+@media (max-width: 900px) {
+    .auth-card {
+        grid-template-columns: 1fr;
+        transform: scale(1);    }
+
+    .auth-left {
+        display: none;
+    }
+}
