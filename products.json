@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "title": "Blac Ball",
+        "price": 100,
+        "description": "Профисиональный мяч для игры в помещении и на улице",
+        "category": "indoor/outdoor",
+        "image": "https://exemple",
+        "rating": {
+            "rate": 4.5,
+            "count": 120
+        }
+    },
+    {
+        "id": 2,
+        "title": "White Ball",
+        "price": 200,
+        "description": "Профисиональный мяч для игры в помещении",
+        "category": "indoor",
+        "image": "https://exemple",
+        "rating": null
+    }
+]
