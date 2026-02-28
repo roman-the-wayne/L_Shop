@@ -5,8 +5,12 @@ import productsData from './data/products.json'
 const app = express();
 const PORT = 5000;
 
+//Внешнее хранилище корзины в оперативной памяти
+let basket: Product[] = [];
 // Приводим данные к типу Product[]
 const products: Product[] = productsData as Product[];
+
+app.use(express.json()); // Позволяет серверу понимать JSON в теле запроса
 
 app.get('/products', (req: Request, res: Response) => {
 
@@ -43,6 +47,33 @@ app.get('/products', (req: Request, res: Response) => {
   }
   //ответ
   res.json(result);
+});
+
+app.get('/basket', (req: Request, res: Response) => {
+    console.log("Запрос в корзину");
+    res.json(basket);
+});
+app.post('/basket', (req: Request, res: Response) => {
+    const { productId } = req.body; // Достаем ID из тела, которое "распознал" express.json()
+
+    // Поиск товар в общем списке продуктов по ID
+    const product = products.find(p => p.id === Number(productId));
+
+    if (!product) {
+        // Если такого ID нет в базе — возвращается ошибку 404
+        return res.status(404).json({ message: "Товар не найден" });
+    }
+
+    basket.push(product); // Добавляем найденный объект товара в массив корзины
+    res.status(201).json({ message: "Добавлено", basket });
+});
+
+app.delete('/basket/:id', (req: Request, res: Response) => {
+    const idToDelete = Number(req.params.id); // Берем ID из самой ссылки (параметр пути)
+    
+    basket = basket.filter(p => p.id !== idToDelete);
+
+    res.json({ message: "Удалено", basket });
 });
 
 app.listen(PORT, () => {
