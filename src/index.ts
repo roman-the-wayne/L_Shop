@@ -1,4 +1,5 @@
 import express, { type Request, type Response } from "express";
+import authRoutes from "./routes/auth.routes";
 
 const app = express();
 const PORT = 5000;
@@ -10,6 +11,8 @@ app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
   res.send("Сервер L_Shop работает!");
 });
+
+app.use("/api/auth", authRoutes);
 
 // Запуск сервера
 app.listen(PORT, () => {
