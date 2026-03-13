@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./home.css";
 
+import logo from "../assets/logo.jpg";
+
 import ball1 from "../assets/мяч1.jpg";
 import ball2 from "../assets/мяч2.jpg";
 import ball3 from "../assets/мяч3.jpg";
@@ -39,6 +41,7 @@ const balls = [
 ];
 
 const HomePage = () => {
+
   const [searchOpen, setSearchOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState("по цене");
@@ -46,7 +49,10 @@ const HomePage = () => {
   return (
     <div className="shop-page">
 
-      {/* панель справа */}
+      {/* логотип */}
+      <img src={logo} className="logo" />
+
+      {/* правая панель */}
       <div className="right-panel">
 
         <img
@@ -55,7 +61,10 @@ const HomePage = () => {
           onClick={() => setSearchOpen(!searchOpen)}
         />
 
-        <img src={basketIcon} className="panel-icon" />
+        <img
+          src={basketIcon}
+          className="panel-icon"
+        />
 
       </div>
 
@@ -68,19 +77,19 @@ const HomePage = () => {
 
       {/* бренды */}
       <div className="brands">
-        {["Wilson", "Molten", "PLAYGROUND", "Spalding", "Sneakerhead"].map(
-          (b) => (
-            <div className="brand-pill" key={b}>
-              {b}
-            </div>
-          )
-        )}
+        {["Wilson","Molten","PLAYGROUND","Spalding","Sneakerhead"].map((brand)=>(
+          <div className="brand-pill" key={brand}>
+            {brand}
+          </div>
+        ))}
       </div>
 
       <div className="shop-container">
 
         {/* фильтры */}
         <div className="filters">
+
+          <h2 className="filters-title">Фильтры</h2>
 
           <h3>РАЗМЕР</h3>
 
@@ -91,6 +100,8 @@ const HomePage = () => {
           <label>
             <input type="checkbox" /> 7
           </label>
+
+          <hr />
 
           <h3>КАТЕГОРИЯ</h3>
 
@@ -104,7 +115,7 @@ const HomePage = () => {
 
         </div>
 
-        {/* контент */}
+        {/* товары */}
         <div className="products-section">
 
           {/* сортировка */}
@@ -121,7 +132,7 @@ const HomePage = () => {
               <div className="sort-options">
 
                 <div
-                  onClick={() => {
+                  onClick={()=>{
                     setSelectedSort("по цене (по возрастанию)");
                     setSortOpen(false);
                   }}
@@ -130,7 +141,7 @@ const HomePage = () => {
                 </div>
 
                 <div
-                  onClick={() => {
+                  onClick={()=>{
                     setSelectedSort("по цене (по убыванию)");
                     setSortOpen(false);
                   }}
@@ -140,22 +151,27 @@ const HomePage = () => {
 
               </div>
             )}
+
           </div>
 
           {/* сетка товаров */}
           <div className="products-grid">
 
-            {balls.map((ball, index) => (
+            {balls.map((ball,index)=>(
               <div className="product-card" key={index}>
 
-                <img src={ball.img} />
+                <img src={ball.img} alt={ball.name} />
 
                 <h4>{ball.name}</h4>
 
                 <div className="price-row">
+
                   <span>{ball.price} ₽</span>
 
-                  <button>В корзину</button>
+                  <button>
+                    В корзину
+                  </button>
+
                 </div>
 
               </div>
@@ -164,7 +180,9 @@ const HomePage = () => {
           </div>
 
         </div>
+
       </div>
+
     </div>
   );
 };
