@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path';
 import express, {Request, Response} from 'express';
 import {Product} from "./interfaces";
 import {BasketItem} from "./interfaces";
@@ -10,8 +12,27 @@ const PORT = 5000;
 let basket: Product[] = [];
 //Приводим данные к типу Product[]
 const products: Product[] = productsData as Product[];
+
+//Путь к файлу корзины пользователей
+const BASKET_PATH = path.join(__dirname, 'data', 'userBaskets.json');
+//Функция для сохранения данных козрин пользователей
+const saveBasketsToFile = () => {
+    try {
+        fs.writeFileSync(BASKET_PATH, JSON.stringify(userBaskets, null, 2), 'utf-8');
+    } catch (error) {
+        console.error("Ошибка при сохранении корзины:", error);
+    }
+};
+
 //Корзина как объект
-const userBaskets: Record<string, BasketItem[]> = {};
+let userBaskets: Record<string, BasketItem[]> = {};
+if (fs.existsSync(BASKET_PATH)) {
+    const fileData = fs.readFileSync(BASKET_PATH, 'utf-8');
+    userBaskets = JSON.parse(fileData);
+    console.log("Данные корзин успешно загружены из файла");
+} else {
+    console.log("Файл корзин не найден");
+}
 
 const checkAuth = (req: Request, res: Response, next: Function) => {
     const userId = req.headers['authorization']; // Ожидаем ID юзера в заголовках
@@ -24,6 +45,8 @@ const checkAuth = (req: Request, res: Response, next: Function) => {
     (req as any).userId = userId;
     next();
 };
+
+
 
 app.use(express.json()); // Позволяет серверу понимать JSON в теле запроса
 
@@ -96,6 +119,8 @@ app.post('/basket', checkAuth, (req: Request, res: Response) => {
         userBasket.push({ ...product, count: 1 });
     }
 
+    saveBasketsToFile();
+
     res.status(201).json({ message: "Добавлено", userBasket });
 });
 
@@ -114,7 +139,9 @@ app.delete('/basket/:id', checkAuth, (req: Request, res: Response) => {
         }
     }
 
-    res.json({ message: "Удалено", basket });
+    saveBasketsToFile();
+
+    res.json({ message: "Удалено", userBasket });
 });
 
 app.listen(PORT, () => {
