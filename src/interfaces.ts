@@ -23,3 +23,7 @@ export interface User{
     avatarUrl?: string;
     role: 'admin' | 'user' | 'guest';
 }
+
+export interface BasketItem extends Product{
+    count: number;
+}
