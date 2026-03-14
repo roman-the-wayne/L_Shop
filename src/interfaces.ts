@@ -1,19 +1,20 @@
-interface Rating{
+export interface Rating{
     rate: number,
     count: number;
 }
 
-interface Product{
+export interface Product{
     id: number;
     title: string;
     price: number;
     description?: string;
     category: string;
+    size: 3 | 4 | 5 | 6 | 7;
     image: string;
     rating: Rating | null;
 }
 
-interface User{
+export interface User{
     id: string | number;
     username: string;
     email: string;
@@ -21,4 +22,8 @@ interface User{
     lastName: string;
     avatarUrl?: string;
     role: 'admin' | 'user' | 'guest';
+}
+
+export interface BasketItem extends Product{
+    count: number;
 }
