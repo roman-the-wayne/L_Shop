@@ -1,0 +1,14 @@
+[
+  {
+    "id": "4ea1b89f-2573-4deb-a716-cafe56a438b0",
+    "email": "test@mail.ru",
+    "password": "123",
+    "basket": []
+  },
+  {
+    "id": "8e9995fa-f005-4cdc-aa20-7fd3a8ed54bf",
+    "email": "roman@test.com",
+    "password": "123",
+    "basket": []
+  }
+]
