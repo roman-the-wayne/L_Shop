@@ -50,7 +50,7 @@ const checkAuth = (req: Request, res: Response, next: Function) => {
 
 app.use(express.json()); // Позволяет серверу понимать JSON в теле запроса
 
-app.get('/products', checkAuth, (req: Request, res: Response) => {
+app.get('/products', (req: Request, res: Response) => {
 
   let result = [...products];
 
